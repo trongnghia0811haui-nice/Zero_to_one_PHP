@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lộ Trình Học PHP 60 Ngày (8 Giờ/Ngày) – Chi Tiết Bài Tập Từng Ngày</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --text: #1b2430;
+      --muted: #5a6778;
+      --border: #dfe5ee;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --accent-dark: #1d4ed8;
+      --code-bg: #f1f5f9;
+      --warn-bg: #fffbeb;
+      --warn-border: #f59e0b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 16px 64px;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 14.5px;
+    }
+
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      background: var(--surface);
+      padding: 40px 44px;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+      border: 1px solid var(--border);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .top-bar h1 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.3;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .btn-print {
+      padding: 9px 16px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-print:hover { background: var(--accent-dark); }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 20px 0 24px;
+    }
+
+    .kpi {
+      background: var(--accent-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .kpi strong {
+      display: block;
+      font-size: 22px;
+      color: var(--accent-dark);
+      line-height: 1.2;
+    }
+
+    .kpi span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    h2 {
+      margin: 34px 0 12px;
+      font-size: 19px;
+      color: #0f172a;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 16.5px;
+      color: var(--accent-dark);
+    }
+
+    h4 {
+      margin: 16px 0 6px;
+      font-size: 15px;
+      color: #0f172a;
+    }
+
+    p { margin: 8px 0; }
+    ul, ol { margin: 6px 0 10px; padding-left: 20px; }
+    li { margin: 3px 0; }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      background: var(--code-bg);
+      padding: 1.5px 5px;
+      border-radius: 4px;
+      color: #0f172a;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px;
+      font-size: 13.8px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 9px 11px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    tr:nth-child(even) td { background: #fafcff; }
+    td.center, th.center { text-align: center; width: 58px; white-space: nowrap; }
+    td.topic-col { width: 28%; }
+
+    .ex-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .ex-list li {
+      margin: 0 0 5px;
+    }
+
+    .ex-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn-border);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+
+    .phase-box {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin: 20px 0;
+      background: #fff;
+    }
+
+    .phase-box > h3 {
+      margin-top: 0;
+    }
+
+    .outcome {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 10px;
+      font-size: 13.8px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 8px;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .checklist input[type="checkbox"] {
+      margin-top: 4px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .progress-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 760px) {
+      .container { padding: 22px 16px; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .top-bar { flex-direction: column; align-items: flex-start; }
+      td.topic-col { width: auto; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      body { background: #fff; padding: 0; font-size: 11.5px; line-height: 1.45; }
+      .container {
+        max-width: 100%;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+      .btn-print { display: none; }
+      .phase-box {
+        border: 1px solid #cbd5e1;
+        padding: 12px 14px;
+        margin: 14px 0;
+      }
+      table { font-size: 11px; break-inside: auto; }
+      thead { display: table-header-group; }
+      tr { break-inside: avoid; page-break-inside: avoid; }
+      h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+      .outcome, .callout { break-inside: avoid; }
+      code { font-size: 10.5px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="top-bar">
+      <div>
+        <h1>Lộ Trình Học PHP 60 Ngày (8 Giờ/Ngày)</h1>
+        <p class="subtitle">Từ nền tảng Web đến PHP Backend / Laravel Fresher • Kèm bài tập thực hành chi tiết từng ngày (480 giờ)</p>
+      </div>
+      <button class="btn-print" onclick="window.print()">In / Xuất PDF</button>
+    </header>
+
+    <section class="kpi-grid">
+      <div class="kpi"><strong>60 Ngày</strong><span>Thời hạn (2 tháng)</span></div>
+      <div class="kpi"><strong>8 Giờ/Ngày</strong><span>480 giờ thực học</span></div>
+      <div class="kpi"><strong>180 Bài Tập</strong><span>3 đầu việc / ngày</span></div>
+      <div class="kpi"><strong>3 Dự Án</strong><span>2 thực hành + 1 Portfolio</span></div>
+    </section>
+
+    <h2>1. Tổng Quan &amp; Mục Tiêu Đầu Ra</h2>
+    <table>
+      <tbody>
+        <tr><th style="width: 210px;">Định hướng</th><td>Web Developer nền tảng → chuyên sâu PHP Backend (Laravel) &amp; bổ sung Frontend cơ bản</td></tr>
+        <tr><th>Xuất phát điểm</th><td>Bắt đầu từ con số 0 (chưa yêu cầu kiến thức lập trình trước đó)</td></tr>
+        <tr><th>Mục tiêu sau 60 ngày</th><td>
+          <ul>
+            <li>Nắm vững tư duy lập trình, cú pháp PHP thuần và lập trình hướng đối tượng (OOP).</li>
+            <li>Tự xây dựng giao diện web cơ bản bằng HTML, CSS, JavaScript.</li>
+            <li>Thiết kế cơ sở dữ liệu quan hệ, viết truy vấn MySQL và kết nối an toàn bằng PDO.</li>
+            <li>Hiểu kiến trúc MVC, xây dựng và kiểm thử RESTful API bằng Postman.</li>
+            <li>Thành thạo Laravel Framework cho ứng dụng Backend thực tế.</li>
+            <li>Sử dụng Git/GitHub, hoàn thiện dự án <strong>Task Management System</strong>, viết CV và tự tin giải thích source code khi phỏng vấn PHP Fresher.</li>
+          </ul>
+        </td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. Lịch Học 8 Giờ/Ngày &amp; Phương Pháp Triển Khai</h2>
+    <p>Chia 8 giờ học thành 4 khối tập trung (không ngồi code liên tục gây quá tải):</p>
+    <table>
+      <thead>
+        <tr><th style="width: 150px;">Khung giờ</th><th>Hoạt động</th><th class="center">Thời lượng</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>08:00 – 10:00</strong></td><td>Học kiến thức mới (đọc tài liệu, xem bài giảng, ghi chú)</td><td class="center">2 giờ</td></tr>
+        <tr><td><strong>10:15 – 12:15</strong></td><td>Code theo bài học (tự gõ lại ví dụ, giải thích từng dòng code)</td><td class="center">2 giờ</td></tr>
+        <tr><td><strong>13:30 – 15:30</strong></td><td>Làm bài tập thực hành cụ thể trong ngày (tự giải, hạn chế xem lời giải)</td><td class="center">2 giờ</td></tr>
+        <tr><td><strong>15:45 – 17:45</strong></td><td>Hoàn thiện bài nâng cao / mini project, commit Git, ghi chú bug &amp; tự kiểm tra</td><td class="center">2 giờ</td></tr>
+      </tbody>
+    </table>
+
+    <ul>
+      <li><strong>Cấu trúc mỗi ngày:</strong> Lesson (lý thuyết) → Practice (hoàn thành đủ 3 đầu mục bài tập trong ngày) → Mini Project → Code Review → Daily Test.</li>
+      <li><strong>Tỉ lệ thời gian:</strong> 30% lý thuyết – 50% thực hành – 20% tự làm bài &amp; ôn tập.</li>
+      <li><strong>Nguyên tắc bắt buộc:</strong> Không học vẹt cú pháp, không copy code khi chưa hiểu, ưu tiên nắm chắc OOP &amp; SQL, mỗi ngày đều có sản phẩm hoặc commit cụ thể đẩy lên GitHub.</li>
+    </ul>
+
+    <h2>3. Bộ Công Cụ Cài Đặt &amp; Tài Liệu Chính Thức</h2>
+    <table>
+      <thead>
+        <tr><th style="width: 180px;">Công cụ / Tài liệu</th><th>Mục đích sử dụng</th><th>Liên kết chính thức</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Visual Studio Code</strong></td><td>Trình soạn thảo code chính</td><td><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">code.visualstudio.com</a></td></tr>
+        <tr><td><strong>PHP &amp; XAMPP</strong></td><td>Ngôn ngữ PHP (dùng XAMPP ban đầu; sang Laravel dùng PHP CLI + MySQL riêng)</td><td><a href="https://www.php.net/downloads.php" target="_blank" rel="noopener">php.net/downloads</a></td></tr>
+        <tr><td><strong>Composer</strong></td><td>Quản lý gói &amp; thư viện PHP</td><td><a href="https://getcomposer.org/" target="_blank" rel="noopener">getcomposer.org</a></td></tr>
+        <tr><td><strong>MySQL</strong></td><td>Hệ quản trị cơ sở dữ liệu quan hệ</td><td><a href="https://dev.mysql.com/downloads/" target="_blank" rel="noopener">dev.mysql.com</a></td></tr>
+        <tr><td><strong>Git &amp; GitHub</strong></td><td>Quản lý phiên bản mã nguồn &amp; lưu Portfolio</td><td><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com</a></td></tr>
+        <tr><td><strong>Postman</strong></td><td>Kiểm thử RESTful API</td><td><a href="https://www.postman.com/downloads/" target="_blank" rel="noopener">postman.com</a></td></tr>
+        <tr><td><strong>Tài liệu học</strong></td><td>PHP Manual, Laravel Docs (chọn đúng version tương thích), W3Schools PHP, SQLBolt, Git Docs</td><td>
+          <a href="https://www.php.net/manual/en/" target="_blank" rel="noopener">PHP Manual</a> ·
+          <a href="https://laravel.com/docs" target="_blank" rel="noopener">Laravel Docs</a> ·
+          <a href="https://www.w3schools.com/php/" target="_blank" rel="noopener">W3Schools</a> ·
+          <a href="https://sqlbolt.com/" target="_blank" rel="noopener">SQLBolt</a> ·
+          <a href="https://git-scm.com/doc" target="_blank" rel="noopener">Git Docs</a>
+        </td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <strong>Lưu ý:</strong> Không cần cài và học Docker ngay trong 2 tháng đầu. Tập trung làm vững PHP, SQL, MVC và Laravel trước.
+    </div>
+
+    <h2>4. Lộ Trình Chi Tiết 60 Ngày &amp; Bài Tập Cụ Thể Từng Ngày</h2>
+
+    <!-- GIAI ĐOẠN 1 -->
+    <section class="phase-box">
+      <h3>Giai đoạn 1: Nền tảng lập trình &amp; Web (Ngày 1 – 10)</h3>
+      <p><strong>Mục tiêu:</strong> Hiểu cách website hoạt động, tạo giao diện HTML/CSS Responsive và viết được JavaScript cơ bản.</p>
+      <table>
+        <thead>
+          <tr><th class="center">Ngày</th><th>Kiến thức cần học</th><th>Bài tập cụ thể trong ngày</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center"><strong>1</strong></td>
+            <td class="topic-col">Cách web hoạt động, Client/Server, HTTP Request/Response, cài VS Code</td>
+            <td><ol class="ex-list">
+              <li>Cài VS Code + Live Server; tạo <code>index.html</code> hiển thị tiêu đề &amp; đoạn văn chạy được trên trình duyệt.</li>
+              <li>Mở Chrome DevTools (tab Network), truy cập 1 trang web và ghi lại: Request URL, HTTP Method (<code>GET</code>), Status Code (<code>200</code>/<code>304</code>/<code>404</code>).</li>
+              <li>Vẽ sơ đồ luồng xử lý từ lúc gõ URL đến lúc trình duyệt hiển thị HTML.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>2</strong></td>
+            <td class="topic-col">HTML: Heading, Paragraph, Link, Image, List</td>
+            <td><ol class="ex-list">
+              <li>Tạo <code>about.html</code> giới thiệu bản thân gồm: ảnh đại diện (<code>&lt;img&gt;</code> có <code>alt</code>), họ tên (<code>&lt;h1&gt;</code>), mục tiêu (<code>&lt;p&gt;</code>), kỹ năng (<code>&lt;ul&gt;</code>) và lộ trình (<code>&lt;ol&gt;</code>).</li>
+              <li>Thêm liên kết sang GitHub/Facebook mở ở tab mới (<code>target="_blank"</code>).</li>
+              <li>Dùng đường dẫn tương đối (<code>./images/...</code>) và kiểm tra không lỗi đóng/mở thẻ.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>3</strong></td>
+            <td class="topic-col">HTML Form, Input, Table, Semantic HTML</td>
+            <td><ol class="ex-list">
+              <li>Dựng <code>register.html</code> bằng Semantic HTML (<code>header</code>, <code>main</code>, <code>section</code>, <code>footer</code>) gồm form đăng ký SV: Họ tên, Email, Mật khẩu, Ngày sinh, Giới tính (<code>radio</code>), Sở thích (<code>checkbox</code>), Khoa (<code>select</code>), Ghi chú (<code>textarea</code>).</li>
+              <li>Gắn đủ <code>&lt;label for&gt;</code>, <code>placeholder</code>, <code>required</code>, <code>minlength</code> cho input.</li>
+              <li>Tạo <code>&lt;table&gt;</code> (<code>thead</code>, <code>tbody</code>) liệt kê 5 sinh viên mẫu (STT, Mã SV, Họ tên, Lớp, Trạng thái).</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>4</strong></td>
+            <td class="topic-col">CSS: Selector, Color, Font, Margin, Padding</td>
+            <td><ol class="ex-list">
+              <li>Tách file <code>style.css</code> nhúng vào <code>about.html</code> và <code>register.html</code>, áp dụng Google Fonts và màu sắc dễ đọc.</li>
+              <li>Style bảng danh sách có viền gọn, tô nền dòng chẵn/lẻ (<code>:nth-child(even)</code>) và hiệu ứng <code>:hover</code> cho nút.</li>
+              <li>Tạo 3 class nút tái sử dụng: <code>.btn-primary</code>, <code>.btn-danger</code>, <code>.btn-outline</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>5</strong></td>
+            <td class="topic-col">CSS Box Model, Display, Position</td>
+            <td><ol class="ex-list">
+              <li>Dựng trang Profile Card áp dụng <code>box-sizing: border-box</code>, <code>box-shadow</code>, <code>border-radius</code> căn giữa màn hình.</li>
+              <li>Tạo thanh điều hướng dính đầu trang (<code>position: sticky; top: 0</code>) và nút "Lên đầu trang" (<code>position: fixed</code>).</li>
+              <li>Dùng <code>position: relative/absolute</code> gắn badge trạng thái ("Online") lên góc ảnh đại diện.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>6</strong></td>
+            <td class="topic-col">Flexbox, Grid, Responsive Design</td>
+            <td><ol class="ex-list">
+              <li>Dùng Flexbox dựng Navbar (Logo trái – Menu giữa – Nút Đăng nhập phải) căn thẳng hàng dọc.</li>
+              <li>Dùng CSS Grid dựng trang danh sách 8 sản phẩm (ảnh, tên, giá, nút "Xem chi tiết").</li>
+              <li>Viết <code>@media</code> query Responsive: Desktop 4 cột (<code>&gt;= 1024px</code>), Tablet 2 cột (<code>768px</code>), Mobile 1 cột (<code>&lt; 600px</code>), test bằng DevTools.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>7</strong></td>
+            <td class="topic-col">JavaScript: Variable, Data Types, Operator</td>
+            <td><ol class="ex-list">
+              <li>Viết script nhận năm sinh → tính tuổi hiện tại và kiểm tra đủ 18 tuổi hay chưa.</li>
+              <li>Tính điểm trung bình 3 môn (làm tròn 2 chữ số thập phân) và tính chỉ số BMI từ cân nặng/chiều cao.</li>
+              <li>Thực hành so sánh <code>==</code> vs <code>===</code>, ép kiểu <code>Number()</code>, <code>String()</code>, <code>Boolean()</code> và in ra <code>console.log</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>8</strong></td>
+            <td class="topic-col">Điều kiện (<code>if/else</code>, <code>switch</code>) &amp; Vòng lặp (<code>for</code>, <code>while</code>)</td>
+            <td><ol class="ex-list">
+              <li>Xếp loại học lực (Giỏi/Khá/TB/Yếu) bằng <code>if/else</code> và trả tên thứ trong tuần (2–8) bằng <code>switch</code>.</li>
+              <li>In bảng cửu chương từ 2 đến 9 và tính tổng các số chẵn từ <code>1</code> đến <code>N</code>.</li>
+              <li>Viết thuật toán kiểm tra số nguyên tố và in toàn bộ số nguyên tố từ <code>1</code> đến <code>100</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>9</strong></td>
+            <td class="topic-col">Function, Array, Object</td>
+            <td><ol class="ex-list">
+              <li>Tạo mảng 5 object sinh viên (<code>id</code>, <code>name</code>, <code>age</code>, <code>score</code>); viết hàm tìm điểm cao nhất, tính điểm TB cả lớp và lọc SV có <code>score &gt;= 8</code>.</li>
+              <li>Viết hàm thêm SV mới (chặn trùng <code>id</code>), xóa SV theo <code>id</code> và tìm kiếm theo tên không phân biệt hoa/thường.</li>
+              <li>Sắp xếp danh sách SV giảm dần theo điểm mà không làm biến đổi mảng gốc.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>10</strong></td>
+            <td class="topic-col">DOM, Event, Form Validation</td>
+            <td><ol class="ex-list">
+              <li>Bắt sự kiện <code>submit</code> trên form đăng ký (Ngày 3): chặn reload (<code>preventDefault</code>), kiểm tra tên rỗng, email đúng định dạng, mật khẩu &ge; 6 ký tự, hiện thông báo lỗi đỏ ngay dưới từng ô.</li>
+              <li><strong>Mini Test cuối chặng:</strong> Hoàn thiện trang <strong>Quản lý danh sách sinh viên</strong> bằng JS thuần (thêm SV từ form vào bảng, xóa từng dòng, tìm kiếm realtime theo tên).</li>
+              <li>Lưu danh sách sinh viên vào <code>localStorage</code> để F5 không bị mất dữ liệu.</li>
+            </ol></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="outcome">
+        <strong>Đầu ra ngày 10:</strong> Tự dựng web HTML/CSS Responsive, viết JS cơ bản, phân biệt rõ Frontend và Backend.
+      </div>
+    </section>
+
+    <!-- GIAI ĐOẠN 2 -->
+    <section class="phase-box">
+      <h3>Giai đoạn 2: PHP từ cơ bản đến OOP (Ngày 11 – 20)</h3>
+      <p><strong>Mục tiêu:</strong> Nắm vững PHP thuần, xử lý Form/Session và tư duy tổ chức code theo lập trình hướng đối tượng (OOP).</p>
+      <table>
+        <thead>
+          <tr><th class="center">Ngày</th><th>Kiến thức cần học</th><th>Bài tập cụ thể trong ngày</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center"><strong>11</strong></td>
+            <td class="topic-col">Cài PHP, Composer, XAMPP/PHP CLI; cú pháp PHP cơ bản</td>
+            <td><ol class="ex-list">
+              <li>Kiểm tra cài đặt (<code>php -v</code>, <code>composer -V</code>); chạy <code>hello.php</code> qua PHP CLI (<code>php hello.php</code>) và trình duyệt (<code>php -S localhost:8000</code>).</li>
+              <li>Tạo <code>info.php</code> trộn HTML + PHP in ra họ tên, ngày giờ server hiện tại và phiên bản PHP.</li>
+              <li>Tách biến cấu hình (tên app, tác giả) sang <code>config.php</code> rồi nhúng vào hiển thị.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>12</strong></td>
+            <td class="topic-col">Variables, Data Types, Operators, Ép kiểu</td>
+            <td><ol class="ex-list">
+              <li>Viết script tính lương thực nhận: nhập lương cơ bản, ngày công, phụ cấp, trừ 10.5% bảo hiểm; format tiền VNĐ bằng <code>number_format()</code>.</li>
+              <li>Tính điểm TB 3 môn có hệ số (Toán &times;2, Văn &times;2, Anh &times;1) và kiểm tra kiểu dữ liệu bằng <code>var_dump()</code>.</li>
+              <li>Thực hành toán tử 3 ngôi (<code>?:</code>) và null coalescing (<code>??</code>) để gán giá trị mặc định.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>13</strong></td>
+            <td class="topic-col">If/Else, Switch, For, While, Foreach</td>
+            <td><ol class="ex-list">
+              <li>Kiểm tra năm nhuận và viết chương trình tính hóa đơn tiền điện bậc thang (0–50, 51–100, &gt;100 kWh).</li>
+              <li>In <code>N</code> số Fibonacci đầu tiên và liệt kê các số nguyên tố từ <code>1</code> đến <code>100</code>.</li>
+              <li>Dùng <code>foreach</code> duyệt mảng số nguyên tìm max, min, tổng và đếm phần tử chẵn/lẻ (không dùng <code>max</code>/<code>min</code> sẵn).</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>14</strong></td>
+            <td class="topic-col">Function, Scope, Parameter, Return</td>
+            <td><ol class="ex-list">
+              <li>Viết <code>helpers.php</code> gồm 10 hàm có type hint &amp; return type: <code>isPrime()</code>, <code>calcAverage()</code>, <code>formatCurrency()</code>, <code>slugify()</code>, <code>maskEmail()</code>, <code>findMax()</code>, <code>filterEven()</code>, <code>countWords()</code>, <code>validatePhone()</code>, <code>calcAge()</code>.</li>
+              <li>Viết <code>test_helpers.php</code> kiểm thử từng hàm với ít nhất 2 bộ input (dữ liệu chuẩn &amp; dữ liệu biên/rỗng).</li>
+              <li>Thực hành biến cục bộ, tham số mặc định và phân biệt truyền tham trị vs tham chiếu (<code>&amp;$var</code>).</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>15</strong></td>
+            <td class="topic-col">Array, Associative Array, Multidimensional Array</td>
+            <td><ol class="ex-list">
+              <li>Tạo mảng đa chiều lưu 6 sinh viên (<code>id</code>, <code>name</code>, <code>class</code>, <code>scores =&gt; [math, lit, eng]</code>).</li>
+              <li>Dùng <code>array_map</code>, <code>array_filter</code>, <code>usort</code> tính điểm TB từng SV, lọc SV đạt học bổng (<code>TB &gt;= 8.0</code>) và sắp xếp giảm dần theo điểm TB.</li>
+              <li>Render bảng HTML danh sách sinh viên kèm dòng thống kê cuối bảng (tổng SV, SV điểm cao nhất).</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>16</strong></td>
+            <td class="topic-col">String, Date/Time, Xử lý dữ liệu</td>
+            <td><ol class="ex-list">
+              <li>Chuẩn hóa chuỗi họ tên nhập lộn xộn (<code>"  nGuYen  vAn  aN "</code> &rarr; <code>"Nguyen Van An"</code>), tách họ/tên và sinh email công ty tự động (<code>an.nv@company.com</code>).</li>
+              <li>Dùng <code>DateTime</code> tính số ngày còn lại đến deadline, tính thâm niên nhân viên và đổi định dạng <code>Y-m-d</code> &harr; <code>d/m/Y</code>.</li>
+              <li>Tách chuỗi CSV nhân viên bằng <code>explode()</code>, validate email/SĐT bằng <code>filter_var</code> và <code>preg_match</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>17</strong></td>
+            <td class="topic-col"><code>GET</code>, <code>POST</code>, <code>REQUEST</code>, Xử lý HTML Form</td>
+            <td><ol class="ex-list">
+              <li>Tạo form đăng ký SV (<code>POST</code>): lọc XSS bằng <code>htmlspecialchars()</code>, validate tên, email, tuổi (18–60) và mật khẩu nhập lại khớp nhau.</li>
+              <li>Khi có lỗi: giữ lại dữ liệu đã nhập (<code>old input</code>) và báo lỗi dưới từng trường; khi hợp lệ: in trang xác nhận thông tin.</li>
+              <li>Tạo thanh tìm kiếm dùng <code>GET</code> (<code>?keyword=...&amp;class=...</code>) lọc mảng SV và giữ từ khóa trên ô tìm kiếm.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>18</strong></td>
+            <td class="topic-col">Session, Cookie, <code>include</code>, <code>require</code>, Xử lý File</td>
+            <td><ol class="ex-list">
+              <li>Tách layout chung vào <code>partials/header.php</code> &amp; <code>partials/footer.php</code>, dùng <code>require_once</code> cho <code>login.php</code>, <code>dashboard.php</code>, <code>logout.php</code>.</li>
+              <li>Xây dựng luồng đăng nhập dùng <code>$_SESSION</code> (chặn truy cập thẳng <code>dashboard.php</code> khi chưa login) và checkbox "Ghi nhớ tài khoản" bằng <code>setcookie()</code>.</li>
+              <li>Ghi lịch sử đăng nhập/đăng xuất vào <code>logs/auth.log</code> (<code>FILE_APPEND</code>) và đọc/ghi danh sách SV với <code>students.json</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>19</strong></td>
+            <td class="topic-col">OOP: Class, Object, Constructor, Destructor, Encapsulation</td>
+            <td><ol class="ex-list">
+              <li>Xây dựng class <code>Employee</code> có thuộc tính <code>private</code> (<code>id</code>, <code>name</code>, <code>age</code>, <code>baseSalary</code>), constructor và getter/setter kiểm tra hợp lệ (<code>age &gt;= 18</code>, <code>baseSalary &gt; 0</code>).</li>
+              <li>Xây dựng class <code>Student</code> có phương thức <code>getAverageScore()</code> và <code>getRank()</code>.</li>
+              <li>Khởi tạo 5 đối tượng, hiển thị bảng HTML và thử truy cập sai thuộc tính <code>private</code> để nắm chắc tính đóng gói.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>20</strong></td>
+            <td class="topic-col">Inheritance, Polymorphism, Abstract Class, Interface, Namespace, Trait</td>
+            <td><ol class="ex-list">
+              <li>Thiết kế <code>abstract class Employee</code> có hàm trừu tượng <code>calculateSalary(): float</code>; tạo 2 lớp con <code>FullTimeEmployee</code> (lương cứng + thưởng) và <code>PartTimeEmployee</code> (giờ &times; đơn giá).</li>
+              <li>Tạo <code>interface Exportable</code> (<code>toArray(): array</code>), <code>trait Timestampable</code> và cấu hình PSR-4 autoload (<code>namespace App\Models;</code>) trong <code>composer.json</code>.</li>
+              <li><strong>Mini Test cuối chặng:</strong> Hoàn thiện ứng dụng <strong>Quản lý nhân viên PHP OOP</strong> (lưu JSON): thêm, sửa, xóa, tìm kiếm theo tên và tính tổng quỹ lương bằng tính đa hình.</li>
+            </ol></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="outcome">
+        <strong>Đầu ra ngày 20:</strong> Thành thạo PHP thuần, xử lý Form/Session và tổ chức code theo Class/Object chuẩn OOP.
+      </div>
+    </section>
+
+    <!-- GIAI ĐOẠN 3 -->
+    <section class="phase-box">
+      <h3>Giai đoạn 3: MySQL, PDO, MVC &amp; REST API (Ngày 21 – 30)</h3>
+      <p><strong>Mục tiêu:</strong> Thiết kế Database quan hệ, truy vấn MySQL thành thạo, kết nối PDO an toàn, hiểu kiến trúc MVC và REST API.</p>
+      <p><strong>Schema mẫu <code>student_management</code>:</strong> <code>classes(id, class_name, description)</code> · <code>students(id, name, email, phone, class_id)</code> · <code>subjects(id, subject_name, credits)</code> · <code>scores(id, student_id, subject_id, score)</code>.</p>
+      <table>
+        <thead>
+          <tr><th class="center">Ngày</th><th>Kiến thức cần học</th><th>Bài tập cụ thể trong ngày</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center"><strong>21</strong></td>
+            <td class="topic-col">Database, Table, Primary Key, Foreign Key</td>
+            <td><ol class="ex-list">
+              <li>Tạo DB <code>student_management</code> (<code>utf8mb4_unicode_ci</code>) và viết <code>schema.sql</code> tạo đủ 4 bảng với <code>AUTO_INCREMENT</code> và <code>FOREIGN KEY ... ON DELETE CASCADE</code>.</li>
+              <li>Vẽ sơ đồ ERD thể hiện rõ quan hệ 1-N (<code>classes–students</code>) và N-N (<code>students–scores–subjects</code>).</li>
+              <li>Viết <code>seed.sql</code> chèn dữ liệu mẫu: tối thiểu 3 lớp, 15 sinh viên, 5 môn học và 30 bản ghi điểm.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>22</strong></td>
+            <td class="topic-col"><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td>
+            <td><ol class="ex-list">
+              <li>Viết &amp; chạy 20 câu SQL trên <code>student_management</code>: thêm 2 SV, sửa SĐT/email theo <code>id</code>, xóa điểm sai, lọc bằng <code>LIKE</code>, <code>IN</code>, <code>BETWEEN</code>, <code>LIMIT/OFFSET</code>.</li>
+              <li>Thử chèn <code>class_id</code> không tồn tại hoặc <code>email</code> trùng để quan sát lỗi ràng buộc MySQL.</li>
+              <li>Lưu toàn bộ 20 câu truy vấn kèm ghi chú kết quả vào <code>day22_queries.sql</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>23</strong></td>
+            <td class="topic-col"><code>WHERE</code>, <code>ORDER BY</code>, <code>GROUP BY</code>, <code>HAVING</code></td>
+            <td><ol class="ex-list">
+              <li>Viết truy vấn đếm số sinh viên của từng lớp, sắp xếp giảm dần.</li>
+              <li>Tính điểm TB, cao nhất, thấp nhất (<code>AVG</code>, <code>MAX</code>, <code>MIN</code>, <code>COUNT</code>) cho từng sinh viên và từng môn học.</li>
+              <li>Dùng <code>HAVING</code> lọc sinh viên có điểm TB &ge; 8.0 và các lớp có từ 3 sinh viên trở lên.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>24</strong></td>
+            <td class="topic-col"><code>INNER JOIN</code>, <code>LEFT JOIN</code>, Subquery</td>
+            <td><ol class="ex-list">
+              <li>Dùng <code>INNER JOIN</code> lấy danh sách SV kèm tên lớp; <code>JOIN</code> 3 bảng (<code>students</code>, <code>scores</code>, <code>subjects</code>) in bảng điểm chi tiết.</li>
+              <li>Dùng <code>LEFT JOIN</code> tìm lớp chưa có sinh viên nào và sinh viên chưa có điểm môn nào.</li>
+              <li>Viết Subquery tìm sinh viên có điểm TB cao hơn điểm TB chung của toàn trường.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>25</strong></td>
+            <td class="topic-col">Index, Constraints, Relationships, Normalization</td>
+            <td><ol class="ex-list">
+              <li>Kiểm tra 4 bảng theo chuẩn 1NF–3NF; bổ sung <code>UNIQUE(email)</code>, <code>CHECK (score &gt;= 0 AND score &lt;= 10)</code> và <code>UNIQUE(student_id, subject_id)</code>.</li>
+              <li>Tạo Index trên <code>students.name</code>, <code>students.class_id</code>, <code>scores.student_id</code>; chạy <code>EXPLAIN SELECT</code> trước/sau để so sánh cột <code>rows</code>.</li>
+              <li>Tạo thêm bảng <code>users (id, name, email, password, role)</code> chuẩn bị cho chức năng đăng nhập.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>26</strong></td>
+            <td class="topic-col">Kết nối PHP – MySQL bằng PDO &amp; Prepared Statement</td>
+            <td><ol class="ex-list">
+              <li>Viết class <code>Database</code> kết nối MySQL qua PDO (<code>ERRMODE_EXCEPTION</code>, <code>FETCH_ASSOC</code>), đọc cấu hình từ <code>config.php</code>.</li>
+              <li>Viết class <code>StudentRepository</code> đủ 5 hàm: <code>all()</code>, <code>findById($id)</code>, <code>create($data)</code>, <code>update($id, $data)</code>, <code>delete($id)</code> dùng Prepared Statement (<code>:param</code>).</li>
+              <li>Chạy test đủ 5 thao tác CRUD và xác nhận dữ liệu thay đổi trực tiếp trong MySQL.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>27</strong></td>
+            <td class="topic-col">SQL Injection, Transaction, Validation</td>
+            <td><ol class="ex-list">
+              <li>Demo lỗi SQL Injection với <code>' OR '1'='1</code> trên câu SQL nối chuỗi &rarr; sửa sang Prepared Statement để thấy bị chặn hoàn toàn.</li>
+              <li>Viết hàm nhập điểm nhiều môn bọc trong PDO Transaction (<code>beginTransaction</code>/<code>commit</code>/<code>rollBack</code>): có 1 môn điểm &gt; 10 thì rollback toàn bộ.</li>
+              <li>Viết class <code>Validator</code> kiểm tra <code>required</code>, <code>email</code>, <code>min</code>, <code>max</code>, <code>numeric</code> trả mảng lỗi rõ ràng.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>28</strong></td>
+            <td class="topic-col">Kiến trúc MVC (Model – View – Controller), Routing</td>
+            <td><ol class="ex-list">
+              <li>Dựng cấu trúc MVC: <code>public/index.php</code>, <code>app/Core/Router.php</code>, <code>app/Controllers/</code>, <code>app/Models/</code>, <code>app/Views/</code>, cấu hình PSR-4 autoload.</li>
+              <li>Viết <code>Router</code> hỗ trợ route <code>GET</code>/<code>POST</code>, ánh xạ URL sang <code>[Controller, 'action']</code> và trả trang <code>404</code> khi không khớp.</li>
+              <li>Xây dựng <code>HomeController</code> và <code>StudentController::index()</code> render danh sách SV từ Model sang View chung.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>29</strong></td>
+            <td class="topic-col">Model, View, Controller – CRUD hoàn chỉnh</td>
+            <td><ol class="ex-list">
+              <li>Hoàn thiện CRUD Sinh viên &amp; Lớp học trong dự án MVC (danh sách, thêm, sửa, xóa qua <code>POST</code> có xác nhận).</li>
+              <li>Bổ sung tìm kiếm theo tên/email (<code>?q=...</code>) và phân trang (<code>?page=1</code>, 5–10 dòng/trang).</li>
+              <li>Tạo trang thống kê điểm trung bình theo từng sinh viên &amp; từng lớp từ SQL <code>JOIN + GROUP BY</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>30</strong></td>
+            <td class="topic-col">HTTP Status Code, REST API, JSON, Git/GitHub, Postman</td>
+            <td><ol class="ex-list">
+              <li>Tạo <code>ApiStudentController</code> cung cấp 5 endpoint JSON đúng Status Code (<code>200</code>, <code>201</code>, <code>400</code>, <code>404</code>, <code>422</code>): <code>GET/POST /api/students</code>, <code>GET/PUT/DELETE /api/students/{id}</code>.</li>
+              <li>Tạo Postman Collection test đủ 5 endpoint (case thành công &amp; case lỗi) rồi export lưu vào repo.</li>
+              <li><strong>Mini Test cuối chặng:</strong> Hoàn thiện <strong>Student Management System (PHP thuần + MySQL + PDO + MVC + Đăng nhập <code>password_hash</code> + REST API)</strong>, đẩy lên GitHub có <code>.gitignore</code> sạch.</li>
+            </ol></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="outcome">
+        <strong>Đầu ra ngày 30:</strong> Thiết kế DB chuẩn, viết SQL thành thạo, kết nối PDO an toàn, dựng được ứng dụng MVC và REST API test bằng Postman.
+      </div>
+    </section>
+
+    <!-- GIAI ĐOẠN 4 -->
+    <section class="phase-box">
+      <h3>Giai đoạn 4: Laravel Framework (Ngày 31 – 42)</h3>
+      <p><strong>Mục tiêu:</strong> Làm chủ Laravel Framework từ cơ bản đến nâng cao để xây dựng Backend web &amp; REST API chuẩn dự án thực tế.</p>
+      <table>
+        <thead>
+          <tr><th class="center">Ngày</th><th>Kiến thức cần học</th><th>Bài tập cụ thể trong ngày</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center"><strong>31</strong></td>
+            <td class="topic-col">Laravel là gì, Composer, cài project, cấu trúc thư mục, <code>.env</code></td>
+            <td><ol class="ex-list">
+              <li>Khởi tạo dự án <code>composer create-project laravel/laravel student-app</code>, cấu hình <code>.env</code> kết nối MySQL và chạy <code>php artisan serve</code>.</li>
+              <li>Ghi chú chức năng từng thư mục cốt lõi (<code>routes/</code>, <code>app/Http/</code>, <code>app/Models/</code>, <code>database/</code>, <code>resources/views/</code>).</li>
+              <li>Tạo route <code>/health</code> trả JSON tên app, phiên bản Laravel và trạng thái kết nối DB.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>32</strong></td>
+            <td class="topic-col">Routing, Route Parameters, Named Routes, Route Group</td>
+            <td><ol class="ex-list">
+              <li>Tạo nhóm route <code>/admin</code> (prefix + name prefix) cho <code>dashboard</code>, <code>students</code>, <code>classes</code>.</li>
+              <li>Khai báo route có tham số bắt buộc ràng buộc số (<code>/students/{id}</code> với <code>whereNumber</code>) và tham số tùy chọn (<code>/classes/{id?}</code>).</li>
+              <li>Dùng <code>route('...')</code> thay vì viết cứng URL và chạy <code>php artisan route:list</code> kiểm tra toàn bộ định tuyến.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>33</strong></td>
+            <td class="topic-col">Controller, Resource Controller, Request, Response</td>
+            <td><ol class="ex-list">
+              <li>Tạo <code>StudentController --resource</code> và gắn <code>Route::resource('students', StudentController::class)</code>.</li>
+              <li>Thực hành nhận dữ liệu từ <code>Request</code> (<code>input</code>, <code>query</code>, <code>only</code>) và trả 3 kiểu response: <code>view()</code>, <code>redirect()-&gt;with()</code>, <code>response()-&gt;json()</code>.</li>
+              <li>Tạo thêm <code>ClassController</code> xử lý danh sách và chi tiết lớp học.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>34</strong></td>
+            <td class="topic-col">Blade Template, Layout Inheritance, Component</td>
+            <td><ol class="ex-list">
+              <li>Tạo master layout <code>layouts/app.blade.php</code> có <code>@yield('title')</code>, <code>@yield('content')</code>, navbar và vùng hiển thị Flash message.</li>
+              <li>Dựng 4 view <code>students/index</code>, <code>create</code>, <code>edit</code>, <code>show</code> dùng <code>@extends</code>, <code>@forelse</code>, <code>@csrf</code>, <code>@method('PUT')</code>.</li>
+              <li>Tách 2 Blade Component tái sử dụng: <code>&lt;x-alert /&gt;</code> và <code>&lt;x-badge /&gt;</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>35</strong></td>
+            <td class="topic-col">Migration, Seeder, Factory</td>
+            <td><ol class="ex-list">
+              <li>Viết Migration cho 4 bảng <code>classes</code>, <code>students</code>, <code>subjects</code>, <code>scores</code> đủ khóa ngoại <code>constrained()-&gt;cascadeOnDelete()</code> và <code>unique()</code>.</li>
+              <li>Viết Factory (<code>ClassFactory</code>, <code>StudentFactory</code>) + <code>DatabaseSeeder</code> sinh tự động 5 lớp, 50 SV, 6 môn học và điểm ngẫu nhiên.</li>
+              <li>Chạy <code>php artisan migrate:fresh --seed</code> kiểm tra tạo lại toàn bộ DB sạch không lỗi.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>36</strong></td>
+            <td class="topic-col">Eloquent ORM, Model, CRUD với Laravel</td>
+            <td><ol class="ex-list">
+              <li>Khai báo <code>$fillable</code> và <code>$casts</code> cho các Model (<code>Classroom</code>, <code>Student</code>, <code>Subject</code>, <code>Score</code>).</li>
+              <li>Hoàn thiện CRUD Sinh viên bằng Eloquent có tìm kiếm từ khóa và phân trang giữ query string (<code>paginate(10)-&gt;withQueryString()</code>).</li>
+              <li>Bật <code>SoftDeletes</code> cho bảng <code>students</code> và làm trang xem/khôi phục (Restore) sinh viên đã xóa.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>37</strong></td>
+            <td class="topic-col">Eloquent Relationships (1-1, 1-N, N-N)</td>
+            <td><ol class="ex-list">
+              <li>Khai báo quan hệ <code>Classroom hasMany Student</code> / <code>Student belongsTo Classroom</code> và <code>Student belongsToMany Subject</code> kèm cột pivot <code>score</code>.</li>
+              <li>Hiển thị tên lớp + bảng điểm từng môn của sinh viên bằng Eager Loading (<code>with(['classroom', 'subjects'])</code>).</li>
+              <li>Đo số câu SQL sinh ra khi thiếu <code>with()</code> (N+1 Query) vs có <code>with()</code> bằng <code>DB::enableQueryLog()</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>38</strong></td>
+            <td class="topic-col">Request Validation, Form Request</td>
+            <td><ol class="ex-list">
+              <li>Tạo <code>StoreStudentRequest</code> và <code>UpdateStudentRequest</code> với đủ rule (<code>required</code>, <code>email</code>, <code>unique</code> bỏ qua chính ID khi sửa, <code>exists:classes,id</code>).</li>
+              <li>Viết thông báo lỗi tiếng Việt trong <code>messages()</code>, hiển thị <code>@error</code> và giữ <code>old()</code> trên form Blade.</li>
+              <li>Kiểm thử đủ case: thiếu trường, sai email, trùng email khi thêm mới vs khi sửa.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>39</strong></td>
+            <td class="topic-col">Middleware, Authentication &amp; Authorization</td>
+            <td><ol class="ex-list">
+              <li>Xây dựng luồng Đăng ký, Đăng nhập, Đăng xuất (bằng <code>Auth::attempt</code> + <code>Hash::make</code> hoặc Laravel Breeze).</li>
+              <li>Tạo Middleware <code>CheckRole</code> (<code>role:admin</code>) chặn user thường không vào được chức năng thêm/sửa/xóa.</li>
+              <li>Viết <code>StudentPolicy</code> kiểm soát quyền thao tác và ẩn/hiện nút sửa/xóa trên Blade bằng <code>@can</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>40</strong></td>
+            <td class="topic-col">REST API, API Resource, JSON Response</td>
+            <td><ol class="ex-list">
+              <li>Cấu hình <code>routes/api.php</code> + Sanctum, tạo <code>Api\StudentController</code>, <code>StudentResource</code> và <code>StudentCollection</code>.</li>
+              <li>Chuẩn hóa JSON trả về (ẩn cột nhạy cảm, format ngày, lồng object <code>classroom</code> và thông tin phân trang).</li>
+              <li>Tạo API login trả Bearer Token, bảo vệ route ghi bằng <code>auth:sanctum</code> và test đủ luồng trên Postman.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>41</strong></td>
+            <td class="topic-col">File Upload, Storage, Mail &amp; Exception Handling</td>
+            <td><ol class="ex-list">
+              <li>Thêm upload ảnh đại diện (<code>avatar</code>), validate <code>mimes:jpg,png,webp|max:2048</code>, lưu vào <code>Storage::disk('public')</code>, chạy <code>storage:link</code> và tự xóa ảnh cũ khi cập nhật/xóa SV.</li>
+              <li>Tạo Mailable gửi email chào mừng khi thêm SV mới (test qua <code>MAIL_MAILER=log</code> hoặc Mailpit).</li>
+              <li>Chuẩn hóa JSON lỗi cho API (<code>404</code>, <code>422</code>, <code>403</code>) khi gọi sai ID hoặc thiếu quyền.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>42</strong></td>
+            <td class="topic-col">Logging, Queue cơ bản, Debugging &amp; Testing</td>
+            <td><ol class="ex-list">
+              <li>Ghi log nghiệp vụ (<code>Log::info</code>/<code>Log::warning</code>) cho tạo/xóa SV, đăng nhập sai; đưa email chào mừng vào Queue (<code>ShouldQueue</code>, chạy <code>php artisan queue:work</code>).</li>
+              <li>Viết tối thiểu 5 Feature Test (PHPUnit/Pest): login, xem danh sách, tạo SV hợp lệ, tạo SV lỗi <code>422</code>, user thường bị chặn xóa <code>403</code>.</li>
+              <li><strong>Mini Test cuối chặng:</strong> Hoàn thiện ứng dụng <strong>Quản lý sinh viên Laravel (Web + REST API + Auth + Upload ảnh + Tests)</strong> đẩy lên GitHub.</li>
+            </ol></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="outcome">
+        <strong>Đầu ra ngày 42:</strong> Thành thạo Routing, Controller, Blade, Migration, Eloquent, Validation, Auth, REST API và viết được Feature Test cơ bản trong Laravel.
+      </div>
+    </section>
+
+    <!-- GIAI ĐOẠN 5 -->
+    <section class="phase-box">
+      <h3>Giai đoạn 5: Dự Án Portfolio – Task Management System (Ngày 43 – 55)</h3>
+      <p><strong>Công nghệ:</strong> PHP Laravel · MySQL · HTML/CSS/Bootstrap · RESTful API · Git/GitHub · Postman</p>
+
+      <h4>5.1. Yêu cầu chức năng (8 Module)</h4>
+      <table>
+        <thead><tr><th style="width: 170px;">Module</th><th>Chức năng chính</th></tr></thead>
+        <tbody>
+          <tr><td><strong>User</strong></td><td>Đăng ký, đăng nhập, quản lý tài khoản</td></tr>
+          <tr><td><strong>Project &amp; Member</strong></td><td>Tạo/sửa/xóa dự án; thêm/xóa thành viên tham gia dự án</td></tr>
+          <tr><td><strong>Task &amp; Assignment</strong></td><td>Tạo/sửa/xóa công việc; giao việc cho thành viên</td></tr>
+          <tr><td><strong>Status &amp; Priority</strong></td><td>Trạng thái (<code>Todo</code>, <code>In Progress</code>, <code>Done</code>), ưu tiên (<code>Low</code>, <code>Medium</code>, <code>High</code>), Deadline</td></tr>
+          <tr><td><strong>Dashboard &amp; Search</strong></td><td>Thống kê công việc; tìm kiếm, lọc đa điều kiện và phân trang</td></tr>
+        </tbody>
+      </table>
+
+      <h4>5.2. Thiết kế Database (tối thiểu 5 bảng)</h4>
+      <ul>
+        <li><code>users (id, name, email, password, role)</code></li>
+        <li><code>projects (id, name, description, owner_id)</code></li>
+        <li><code>project_members (id, project_id, user_id)</code></li>
+        <li><code>tasks (id, project_id, title, description, status, priority, due_date)</code></li>
+        <li><code>task_assignments (id, task_id, user_id)</code></li>
+      </ul>
+
+      <h4>5.3. Lịch triển khai &amp; Đầu việc cụ thể từng ngày (13 ngày)</h4>
+      <table>
+        <thead><tr><th class="center">Ngày</th><th>Hạng mục chính</th><th>Đầu việc &amp; Bài tập thực hiện cụ thể</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="center"><strong>43</strong></td>
+            <td class="topic-col">Phân tích yêu cầu, Use Case</td>
+            <td><ol class="ex-list">
+              <li>Viết <code>docs/requirements.md</code> mô tả chi tiết 8 module, 2 vai trò (<code>Admin</code>, <code>Member</code>) và ma trận phân quyền.</li>
+              <li>Liệt kê toàn bộ danh sách màn hình Web và REST API endpoints dự kiến.</li>
+              <li>Phác thảo wireframe cho 4 màn hình chính: Dashboard, Danh sách Project, Chi tiết Project/Task, Form giao việc.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>44</strong></td>
+            <td class="topic-col">Thiết kế ERD &amp; Database</td>
+            <td><ol class="ex-list">
+              <li>Thiết kế chi tiết 5 bảng (<code>users</code>, <code>projects</code>, <code>project_members</code>, <code>tasks</code>, <code>task_assignments</code>) rõ kiểu dữ liệu, enum, default, khóa ngoại.</li>
+              <li>Xuất sơ đồ ERD lưu tại <code>docs/erd.png</code> và đánh dấu cột cần đánh Index (<code>tasks.project_id</code>, <code>tasks.status</code>, <code>tasks.due_date</code>).</li>
+              <li>Liệt kê trước các câu truy vấn cốt lõi (task theo project, task của tôi, thống kê status).</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>45</strong></td>
+            <td class="topic-col">Khởi tạo Laravel, Môi trường, Migrations</td>
+            <td><ol class="ex-list">
+              <li>Tạo repo GitHub <code>task-management-laravel</code>, khởi tạo Laravel, tổ chức thư mục <code>Services/</code>, <code>Policies/</code>, <code>Requests/</code>.</li>
+              <li>Viết đủ 5 Migration + Model + Relationships + Factory + Seeder (1 Admin, 5 Member, 3 Project, 20 Task mẫu).</li>
+              <li>Chạy <code>migrate:fresh --seed</code> thành công, push commit khởi tạo và áp dụng nhánh <code>feature/...</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>46</strong></td>
+            <td class="topic-col">Authentication</td>
+            <td><ol class="ex-list">
+              <li>Hoàn thiện trang Đăng ký, Đăng nhập, Đăng xuất và Hồ sơ cá nhân (đổi tên, đổi mật khẩu có kiểm tra mật khẩu cũ).</li>
+              <li>Hash mật khẩu và cấu hình rate limiting (<code>throttle</code>) cho route login.</li>
+              <li>Xây dựng API <code>/api/register</code>, <code>/api/login</code>, <code>/api/logout</code>, <code>/api/me</code> bằng Sanctum và test trên Postman.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>47</strong></td>
+            <td class="topic-col">Quản lý User &amp; Phân quyền</td>
+            <td><ol class="ex-list">
+              <li>Tạo Middleware <code>Admin</code> + trang quản lý User (chỉ Admin được xem danh sách, đổi role, khóa/mở tài khoản).</li>
+              <li>Viết <code>ProjectPolicy</code> và <code>TaskPolicy</code>: chỉ Owner/Member được xem Project; chỉ Owner/Admin được sửa/xóa Project.</li>
+              <li>Test thực tế bằng 2 tài khoản, thử truy cập URL project người khác để xác nhận trả đúng <code>403 Forbidden</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>48</strong></td>
+            <td class="topic-col">CRUD Project</td>
+            <td><ol class="ex-list">
+              <li>Tạo <code>ProjectService</code>, <code>StoreProjectRequest</code>, <code>UpdateProjectRequest</code>, <code>ProjectController</code> và <code>Api\ProjectController</code>.</li>
+              <li>Hoàn thiện danh sách Project (chỉ hiện dự án có quyền truy cập, kèm số thành viên &amp; <code>%</code> hoàn thành), thêm/sửa/xóa.</li>
+              <li>Tự động gán <code>owner_id</code> và thêm Owner vào <code>project_members</code> trong DB Transaction khi tạo dự án mới.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>49</strong></td>
+            <td class="topic-col">Quản lý thành viên Project</td>
+            <td><ol class="ex-list">
+              <li>Làm giao diện &amp; API thêm thành viên vào Project (validate user tồn tại &amp; chặn thêm trùng).</li>
+              <li>Làm chức năng xóa thành viên khỏi Project (chặn xóa chính Owner, gỡ assignment liên quan).</li>
+              <li>Hiển thị danh sách thành viên trong trang chi tiết Project kèm số Task mỗi người đang đảm nhận.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>50</strong></td>
+            <td class="topic-col">CRUD Task</td>
+            <td><ol class="ex-list">
+              <li>Tạo <code>TaskService</code>, <code>StoreTaskRequest</code>, <code>UpdateTaskRequest</code>, <code>TaskController</code> và <code>Api\TaskController</code> (<code>/projects/{project}/tasks</code>).</li>
+              <li>Hoàn thiện thêm/sửa/xóa/chi tiết Task đủ trường: tiêu đề, mô tả, status, priority, <code>due_date &gt;= today</code>.</li>
+              <li>Kiểm tra <code>TaskPolicy</code> chặn user ngoài dự án gửi request giả mạo <code>project_id</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>51</strong></td>
+            <td class="topic-col">Giao việc, Trạng thái, Deadline</td>
+            <td><ol class="ex-list">
+              <li>Triển khai giao Task cho 1 hoặc nhiều thành viên thuộc dự án (validate nằm trong <code>project_members</code>, lưu qua <code>sync()</code>).</li>
+              <li>Thêm thao tác đổi nhanh trạng thái (<code>Todo</code> &rarr; <code>In Progress</code> &rarr; <code>Done</code>) và tô đỏ Task quá hạn chưa xong.</li>
+              <li>Tạo trang "Công việc của tôi" (<code>/my-tasks</code>) gom toàn bộ Task được giao trên mọi dự án, sắp xếp theo deadline gần nhất.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>52</strong></td>
+            <td class="topic-col">Dashboard Thống kê &amp; API</td>
+            <td><ol class="ex-list">
+              <li>Viết truy vấn tổng hợp Dashboard: tổng Project, tổng Task, số Task theo từng status, số Task quá hạn và top 5 Task sắp tới hạn.</li>
+              <li>Tích hợp biểu đồ (Chart.js) hiển thị phân bố trạng thái và độ ưu tiên công việc.</li>
+              <li>Tạo endpoint <code>GET /api/dashboard/summary</code> trả số liệu JSON chuẩn theo quyền user đang đăng nhập.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>53</strong></td>
+            <td class="topic-col">Search, Filter &amp; Pagination</td>
+            <td><ol class="ex-list">
+              <li>Viết Eloquent Scope (<code>scopeFilter</code>) lọc Task đa điều kiện: từ khóa, trạng thái, mức ưu tiên, người được giao, khoảng deadline &amp; sắp xếp.</li>
+              <li>Áp dụng phân trang (<code>paginate(10)-&gt;withQueryString()</code>) thống nhất cho cả Web và API.</li>
+              <li>Kiểm tra sạch lỗi N+1 Query trên trang danh sách (<code>with(['assignees', 'project'])</code>, <code>withCount('tasks')</code>).</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>54</strong></td>
+            <td class="topic-col">Kiểm thử, Tối ưu SQL &amp; Bảo mật</td>
+            <td><ol class="ex-list">
+              <li>Viết tối thiểu 10 Feature Test phủ Auth, phân quyền <code>403</code>, CRUD Project/Task, giao việc, lọc &amp; phân trang, API JSON.</li>
+              <li>Rà soát bảo mật: XSS (<code>{{ }}</code>), CSRF, <code>$fillable</code>, ẩn <code>password</code> trong API Resource, chạy <code>EXPLAIN</code> kiểm tra truy vấn chậm.</li>
+              <li>Refactor Controller dài sang Service/FormRequest và sửa triệt để mọi bug phát hiện được.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>55</strong></td>
+            <td class="topic-col">Hoàn thiện UI, <code>README.md</code> &amp; MVP</td>
+            <td><ol class="ex-list">
+              <li>Chỉnh giao diện Responsive gọn gàng, bổ sung trạng thái rỗng (empty state) và trang lỗi tùy biến (<code>403</code>, <code>404</code>).</li>
+              <li>Chụp ảnh màn hình chức năng + ERD; viết <code>README.md</code> hoàn chỉnh (cài đặt từng bước, tài khoản demo, bảng API + file Postman).</li>
+              <li>Tự clone lại repo sang thư mục mới và cài theo đúng <code>README.md</code> để xác nhận chạy mượt từ đầu.</li>
+            </ol></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="outcome">
+        <strong>Yêu cầu chất lượng &amp; bảo mật bắt buộc:</strong> Không xem được dự án ngoài quyền truy cập • Hash mật khẩu (không lưu plaintext) • Validate mọi đầu vào • Phân trang mọi danh sách • Không lộ thông tin nhạy cảm qua API • Tách logic khỏi Controller (Service/FormRequest/Policy).
+      </div>
+    </section>
+
+    <!-- GIAI ĐOẠN 6 -->
+    <section class="phase-box">
+      <h3>Giai đoạn 6: Đóng Gói, Triển Khai &amp; Chuẩn Bị Phỏng Vấn (Ngày 56 – 60)</h3>
+      <table>
+        <thead><tr><th class="center">Ngày</th><th>Nội dung</th><th>Bài tập &amp; Đầu việc cụ thể trong ngày</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="center"><strong>56</strong></td>
+            <td class="topic-col">Ôn PHP thuần, OOP, SQL, MVC</td>
+            <td><ol class="ex-list">
+              <li>Tự viết câu trả lời ngắn gọn (3–5 dòng + 1 ví dụ code) cho câu hỏi 1–8 trong bộ 12 chủ đề phỏng vấn (không chép văn mẫu).</li>
+              <li>Tự giải 3 bài live-coding trong 45 phút không mở Google: đếm tần suất ký tự bằng PHP, viết 1 câu SQL <code>LEFT JOIN + GROUP BY + HAVING</code>, thiết kế class OOP có Interface.</li>
+              <li>Lập danh sách điểm còn yếu để ôn bù ngay cuối buổi.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>57</strong></td>
+            <td class="topic-col">Ôn Laravel, REST API, Auth &amp; Giải thích dự án</td>
+            <td><ol class="ex-list">
+              <li>Tự trả lời câu hỏi 9–12 kèm dẫn chứng trực tiếp bằng file code thật trong dự án Task Management.</li>
+              <li>Viết dàn ý thuyết trình dự án 5 phút: bài toán, sơ đồ 5 bảng DB, luồng Policy phân quyền, xử lý N+1 Query và 2 bug khó nhất đã tự xử lý.</li>
+              <li>Tự nói thành tiếng (hoặc quay video) trình bày dự án 2 lượt, canh đúng thời gian.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>58</strong></td>
+            <td class="topic-col">Deploy bản demo &amp; Dọn GitHub</td>
+            <td><ol class="ex-list">
+              <li>Deploy Task Management System lên môi trường live (tắt <code>APP_DEBUG=false</code>), seed sẵn tài khoản demo Admin &amp; Member.</li>
+              <li>Kiểm thử toàn bộ chức năng chính trực tiếp trên link demo (login, tạo project/task, lọc, biểu đồ, API).</li>
+              <li>Dọn profile GitHub: pin 2 repo nổi bật (<code>Task Management Laravel</code>, <code>Student Management PHP MVC</code>) và gắn link demo vào <code>README.md</code>.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>59</strong></td>
+            <td class="topic-col">Viết CV PHP Fresher &amp; Hồ sơ ứng tuyển</td>
+            <td><ol class="ex-list">
+              <li>Soạn CV 1 trang chuẩn kỹ thuật (nhóm kỹ năng rõ ràng; mô tả dự án cụ thể công nghệ, số bảng DB, tính năng cốt lõi, link GitHub &amp; Demo).</li>
+              <li>Nhờ mentor/đàn anh review CV, sửa các câu mô tả chung chung thành kết quả kỹ thuật cụ thể.</li>
+              <li>Tổng hợp 15–20 tin tuyển dụng PHP Fresher/Intern, đối chiếu JD để bổ sung từ khóa kỹ thuật còn thiếu.</li>
+            </ol></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>60</strong></td>
+            <td class="topic-col">Thi thử phỏng vấn &amp; Tổng kết</td>
+            <td><ol class="ex-list">
+              <li>Thực hiện 1 buổi Mock Interview 45–60 phút (20p lý thuyết + 20p demo &amp; hỏi xoáy code dự án + 15p bài tập PHP/SQL nhanh).</li>
+              <li>Tự chấm điểm theo thang 10 cho từng mảng: Web cơ bản, PHP/OOP, SQL, Laravel, Dự án, Giao tiếp kỹ thuật.</li>
+              <li>Chốt danh sách lỗ hổng cần vá trong 2 tuần tiếp theo và bắt đầu gửi CV ứng tuyển.</li>
+            </ol></td>
+          </tr>
+        </tbody>
+      </table>
+      <h4>12 chủ đề phỏng vấn PHP Fresher trọng tâm</h4>
+      <ol>
+        <li>PHP là gì? Vòng đời một HTTP Request trong PHP hoạt động như thế nào?</li>
+        <li>Phân biệt <code>GET</code> và <code>POST</code>.</li>
+        <li>Phân biệt <code>Session</code> và <code>Cookie</code>.</li>
+        <li>Phân biệt <code>Abstract Class</code> và <code>Interface</code>.</li>
+        <li>4 tính chất của OOP và ví dụ thực tế.</li>
+        <li>Mô hình MVC hoạt động ra sao?</li>
+        <li>SQL Injection là gì? Cách phòng chống bằng Prepared Statement.</li>
+        <li>Phân biệt <code>INNER JOIN</code> và <code>LEFT JOIN</code>.</li>
+        <li>Laravel Eloquent ORM là gì? Vấn đề N+1 Query và cách xử lý cơ bản.</li>
+        <li>Middleware trong Laravel dùng để làm gì?</li>
+        <li>Migration, Seeder và Factory dùng để làm gì?</li>
+        <li>Phân biệt Authentication và Authorization.</li>
+      </ol>
+    </section>
+
+    <h2>5. Tiêu Chí Đánh Giá Năng Lực &amp; Checklist Tiến Độ</h2>
+    <table>
+      <thead><tr><th class="center">Mốc</th><th>Tiêu chí đạt</th></tr></thead>
+      <tbody>
+        <tr><td class="center"><strong>Ngày 10</strong></td><td>Tự làm website HTML/CSS/JS không cần xem hướng dẫn</td></tr>
+        <tr><td class="center"><strong>Ngày 20</strong></td><td>Tự viết chương trình quản lý nhân viên bằng PHP OOP độc lập</td></tr>
+        <tr><td class="center"><strong>Ngày 30</strong></td><td>Tạo ứng dụng PHP CRUD + MVC kết nối MySQL bằng PDO &amp; có REST API</td></tr>
+        <tr><td class="center"><strong>Ngày 42</strong></td><td>Xây dựng ứng dụng Laravel CRUD, Auth, Upload ảnh, REST API và Feature Test cơ bản</td></tr>
+        <tr><td class="center"><strong>Ngày 55</strong></td><td>Dự án Task Management System chạy đầy đủ chức năng, có phân quyền, Test &amp; README</td></tr>
+        <tr><td class="center"><strong>Ngày 60</strong></td><td>Tự giải thích được source code, thiết kế DB và vượt qua phỏng vấn thử</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <strong>Thang điểm &amp; Điều kiện chuyển giai đoạn:</strong> 0–4 (chưa hiểu) • 5–6 (cần hướng dẫn) • 7–8 (tự làm được) • 9–10 (giải thích &amp; áp dụng linh hoạt). Cần đạt <strong>&ge; 7/10</strong> ở bài kiểm tra cuối mỗi giai đoạn mới chuyển sang chặng tiếp theo.
+    </div>
+
+    <h3>Checklist tự theo dõi (19 đầu mục)</h3>
+    <div class="progress-bar">
+      <span id="progress-text">Tiến độ: 0 / 19 hoàn thành</span>
+    </div>
+    <ul class="checklist" id="roadmap-checklist">
+      <li><input type="checkbox" data-id="c1" /><span><strong>Giai đoạn 1:</strong> Hiểu cấu trúc web, tạo trang HTML/CSS Responsive</span></li>
+      <li><input type="checkbox" data-id="c2" /><span><strong>Giai đoạn 1:</strong> Viết JS cơ bản, thao tác DOM &amp; Form Validation</span></li>
+      <li><input type="checkbox" data-id="c3" /><span><strong>Giai đoạn 2:</strong> Nắm vững cú pháp PHP, Array và Function</span></li>
+      <li><input type="checkbox" data-id="c4" /><span><strong>Giai đoạn 2:</strong> Xử lý Form HTML, Session và Cookie bằng PHP</span></li>
+      <li><input type="checkbox" data-id="c5" /><span><strong>Giai đoạn 2:</strong> Hiểu OOP (Class, Inheritance, Interface) &amp; hoàn thành bài quản lý nhân viên</span></li>
+      <li><input type="checkbox" data-id="c6" /><span><strong>Giai đoạn 3:</strong> Thiết kế được Database quan hệ (PK, FK, chuẩn hóa)</span></li>
+      <li><input type="checkbox" data-id="c7" /><span><strong>Giai đoạn 3:</strong> Viết thành thạo SQL (<code>JOIN</code>, <code>GROUP BY</code>, <code>HAVING</code>, Subquery)</span></li>
+      <li><input type="checkbox" data-id="c8" /><span><strong>Giai đoạn 3:</strong> Kết nối PHP – MySQL bằng PDO &amp; chống SQL Injection</span></li>
+      <li><input type="checkbox" data-id="c9" /><span><strong>Giai đoạn 3:</strong> Hiểu MVC, tạo REST API cơ bản, dùng Git và Postman</span></li>
+      <li><input type="checkbox" data-id="c10" /><span><strong>Giai đoạn 4:</strong> Thành thạo Laravel Routing, Controller và Blade Template</span></li>
+      <li><input type="checkbox" data-id="c11" /><span><strong>Giai đoạn 4:</strong> Sử dụng Migration, Seeder, Factory và Eloquent ORM/Relationships</span></li>
+      <li><input type="checkbox" data-id="c12" /><span><strong>Giai đoạn 4:</strong> Triển khai Validation, Middleware, Authentication, API Resource &amp; Feature Test</span></li>
+      <li><input type="checkbox" data-id="c13" /><span><strong>Giai đoạn 5:</strong> Hoàn thiện phân tích yêu cầu &amp; ERD cho Task Management System</span></li>
+      <li><input type="checkbox" data-id="c14" /><span><strong>Giai đoạn 5:</strong> Hoàn thiện chức năng cốt lõi (Auth, phân quyền, CRUD Project/Task, giao việc)</span></li>
+      <li><input type="checkbox" data-id="c15" /><span><strong>Giai đoạn 5:</strong> Hoàn thiện Dashboard, Search/Filter/Pagination &amp; kiểm thử bảo mật</span></li>
+      <li><input type="checkbox" data-id="c16" /><span><strong>Giai đoạn 5:</strong> Đẩy source code sạch lên GitHub kèm <code>README.md</code> chi tiết</span></li>
+      <li><input type="checkbox" data-id="c17" /><span><strong>Giai đoạn 6:</strong> Deploy bản demo &amp; hoàn thiện CV PHP Fresher</span></li>
+      <li><input type="checkbox" data-id="c18" /><span><strong>Giai đoạn 6:</strong> Trả lời tốt 12 chủ đề phỏng vấn trọng tâm</span></li>
+      <li><input type="checkbox" data-id="c19" /><span><strong>Giai đoạn 6:</strong> Vượt qua buổi phỏng vấn thử (Mock Interview)</span></li>
+    </ul>
+
+    <h2>6. Định Hướng Phát Triển Sau 60 Ngày</h2>
+    <table>
+      <thead><tr><th style="width: 220px;">Hướng phát triển</th><th>Lộ trình tiếp theo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PHP Backend Developer</strong><br /><em>(Ưu tiên nếu chưa rõ hướng)</em></td><td>PHP nâng cao, Laravel chuyên sâu, tối ưu MySQL &amp; Index, Redis &amp; Queue, Docker, Testing nâng cao, System Design</td></tr>
+        <tr><td><strong>Fullstack PHP Developer</strong></td><td>PHP Laravel + JavaScript nâng cao (ES6+, Async), Vue.js hoặc React, Frontend Architecture &amp; tích hợp SPA với REST API</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    (function () {
+      const storageKey = "php_roadmap_60d_v1";
+      const checkboxes = Array.from(document.querySelectorAll('#roadmap-checklist input[type="checkbox"]'));
+      const progressText = document.getElementById("progress-text");
+
+      function load() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+          checkboxes.forEach((cb) => { cb.checked = Boolean(saved[cb.dataset.id]); });
+        } catch (_) {}
+        updateProgress();
+      }
+
+      function save() {
+        const state = {};
+        checkboxes.forEach((cb) => { state[cb.dataset.id] = cb.checked; });
+        try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (_) {}
+        updateProgress();
+      }
+
+      function updateProgress() {
+        const done = checkboxes.filter((cb) => cb.checked).length;
+        progressText.textContent = `Tiến độ: ${done} / ${checkboxes.length} hoàn thành`;
+      }
+
+      checkboxes.forEach((cb) => cb.addEventListener("change", save));
+      load();
+    })();
+  </script>
+</body>
+</html>
