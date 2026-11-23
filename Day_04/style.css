@@ -1,0 +1,85 @@
+body{
+    font-family: "Be Vietnam Pro";
+}
+form{
+    padding: 10px 10px 20px;
+    border-radius: 20px;
+    border-color: blue;
+    background-color:rgb(255, 240, 240);
+    border-width: 5px;
+    border: 1px solid rgb(95, 145, 103)
+}
+*{
+    box-sizing: border-box;
+}
+main {
+    width: min(100% - 2rem, 64rem);
+    margin: 2rem auto;
+}
+form > label, form>fieldset{
+    margin: 20px 0px 5px;
+    font-weight: 100;
+    display: block;
+}
+form > input, form>select, form>textarea{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid rgb(24, 39, 141);
+}
+button{
+    padding: 0.7rem 1rem;
+    border: 0;
+    border-radius: 0.4rem;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-primary button{
+    background-color: aqua;
+}
+.btn-outline button{
+    background-color: white;
+    border: 2px solid #0360ff;
+}
+.btn-danger button{
+    background-color: #ff2a2a;
+}
+button:hover{
+    background: #83bdd7;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #7aa8f5;
+    outline-offset: 2px;
+}
+table{
+    border-collapse: collapse;
+}
+th, td{
+    vertical-align: top;
+    text-align: left;
+    padding: 0.8rem;
+    border-bottom: 1px solid #e2e8f1;
+}
+th{
+    background: #7aa8f5;
+}
+tbody tr:nth-child(even){
+    background: #eef5ff;
+}
+tbody tr:hover{
+    background: #bed6ff;
+}
+
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.table-row{
+    overflow-x: auto;
+}
