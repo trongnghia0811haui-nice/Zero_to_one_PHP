@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Day 05 - Profile Card</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body id="top">
+
+    <header class="navbar">
+        <strong>My Profile</strong>
+
+        <nav>
+            <a href="#profile">Trang chủ</a>
+            <a href="#projects">Dự án</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile-area" id="profile">
+            <article class="profile-card">
+
+                <div class="avatar-container">
+                    <img
+                        src="download.jpg"
+                        alt="Ảnh đại diện sinh viên"
+                    >
+                    <span class="online-badge">
+                        Online
+                    </span>
+                </div>
+
+                <h1>Nguyễn Văn An</h1>
+                <p class="role">PHP Backend Developer</p>
+
+                <p>
+                    Yêu thích lập trình web và
+                    phát triển ứng dụng.
+                </p>
+
+                <a class="btn" href="#projects">
+                    Xem dự án
+                </a>
+            </article>
+        </section>
+
+        <section class="projects" id="projects">
+            <h2>Dự án của tôi</h2>
+
+            <p>1. Website quản lý sinh viên</p>
+            <p>2. Website quản lý công việc</p>
+            <p>3. REST API bằng PHP</p>
+        </section>
+    </main>
+
+    <a href="#top" class="back-to-top"
+       aria-label="Lên đầu trang">
+        ↑
+    </a>
+
+    <footer>
+        <p>© 2026 - My Profile</p>
+    </footer>
+
+</body>
+</html>

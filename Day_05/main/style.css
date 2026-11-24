@@ -1,0 +1,158 @@
+
+/* 1. Reset cơ bản */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+/* 2. Thanh điều hướng Sticky */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background-color: #1e293b;
+    color: white;
+    padding: 20px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 16px;
+}
+
+.navbar a:hover {
+    color: #93c5fd;
+}
+
+/* 3. Khu vực Profile */
+.profile-area {
+    min-height: 85vh;
+    padding: 40px 16px;
+
+    display: grid;
+    place-items: center;
+}
+
+/* 4. Profile Card */
+.profile-card {
+    width: 100%;
+    max-width: 450px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+.profile-card:hover{
+    background-color: #eff6ff;
+}
+
+/* 5. Ảnh đại diện */
+.avatar-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 24px;
+}
+
+.avatar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* 6. Badge Online */
+.online-badge {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+
+    background-color: #16a34a;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+/* 7. Thông tin Profile */
+.profile-card h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.role {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 20px;
+
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* 8. Phần dự án */
+.projects {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+/* 9. Nút lên đầu trang */
+.back-to-top {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 200;
+
+    padding: 12px 18px;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+/* 10. Footer */
+footer {
+    text-align: center;
+    background-color: #1e293b;
+    color: white;
+    padding: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
