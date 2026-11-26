@@ -1,0 +1,114 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ngày 10 — DOM, Event và Form Validation</title><link rel="stylesheet" href="style.css"></head><body>
+<header><p class="muted">GIÁO TRÌNH PHP · NGÀY 10 / 60</p><h1>DOM, Event và Form Validation</h1><p>Đưa dữ liệu JavaScript lên trang web và phản hồi thao tác của người dùng.</p><nav><a href="index.html">Mục lục</a><a href="ngay-09.html">← Ngày 09</a><a href="ngay-11.html">Ngày 11 →</a></nav></header><main>
+<section><h2>1. Mục tiêu và chuẩn bị</h2><p>Sau bài này, bạn có thể chọn phần tử, đọc dữ liệu form, xử lý sự kiện, hiển thị lỗi và thêm hoặc xóa dòng trong bảng. Bạn cũng sẽ biết lưu dữ liệu không nhạy cảm bằng localStorage và xử lý khi không đọc hoặc ghi được.</p><p>Chuẩn bị VS Code, trình duyệt và DevTools. Tạo thư mục riêng cho bài tập, mở trang qua máy chủ phát triển cục bộ như Live Server. Nhấn F12 → Console để xem thông báo lỗi. Đừng dùng mật khẩu thật khi thử nghiệm.</p></section>
+<section><h2>2. DOM — JavaScript nhìn thấy trang như thế nào?</h2><p>Document Object Model (DOM) là biểu diễn tài liệu dưới dạng cây đối tượng. Trình duyệt tạo DOM từ HTML; JavaScript có thể chọn một phần tử và thay đổi văn bản, thuộc tính hoặc thêm phần tử con.</p><pre><code>&lt;h1 id="title"&gt;Danh sách sinh viên&lt;/h1&gt;
+&lt;script&gt;
+  const title = document.querySelector('#title');
+  title.textContent = 'Quản lý sinh viên';
+&lt;/script&gt;</code></pre><p><code>querySelector</code> trả phần tử khớp đầu tiên hoặc <code>null</code> nếu không tìm thấy. <code>querySelectorAll</code> trả danh sách các phần tử khớp; dùng <code>forEach</code> để duyệt. <code>textContent</code> đặt chữ thuần, tránh diễn giải dữ liệu người dùng thành HTML.</p><pre><code>const title = document.querySelector('#missing');
+if (title !== null) {
+    title.textContent = 'Đã tìm thấy';
+} else {
+    console.log('Không tìm thấy phần tử');
+}</code></pre><p><strong>Lỗi thường gặp:</strong> sai selector hoặc chạy script trước khi phần tử được tạo khiến biến nhận <code>null</code>. Đặt script cuối <code>body</code> hoặc dùng <code>defer</code> cho script bên ngoài.</p></section>
+<section><h2>3. Event — phản hồi tương tác</h2><p>Sự kiện xảy ra khi người dùng nhấn nút, nhập chữ hoặc gửi form. <code>addEventListener</code> đăng ký hàm xử lý; sự kiện <code>input</code> phù hợp tìm kiếm khi nội dung thay đổi, còn <code>submit</code> bắt cả nhấn nút gửi và Enter trong form.</p><pre><code>&lt;button id="hello" type="button"&gt;Chào&lt;/button&gt;
+&lt;p id="message"&gt;&lt;/p&gt;
+&lt;script&gt;
+const button = document.querySelector('#hello');
+const message = document.querySelector('#message');
+button.addEventListener('click', function () {
+    message.textContent = 'Xin chào!';
+});
+&lt;/script&gt;</code></pre><p>Ghi <code>addEventListener('click', handler)</code> thay vì <code>handler()</code>: cách sau gọi hàm ngay lúc đăng ký. Trong form, <code>type="button"</code> tránh gửi form ngoài ý muốn.</p></section>
+<section><h2>4. Xác thực form</h2><p>HTML cung cấp <code>required</code>, <code>type="email"</code> và <code>minlength</code>. JavaScript có thể hiển thị lỗi phù hợp hơn, nhưng kiểm tra ở trình duyệt không thay thế kiểm tra ở server. <code>preventDefault()</code> chặn thao tác gửi mặc định khi muốn tự xử lý.</p><h3>Ví dụ có thể tự chạy</h3><p>Lưu nội dung sau thành <code>validate.html</code>, mở qua Live Server, thử để trống, nhập email sai và nhập dữ liệu hợp lệ. Đây là ví dụ giao diện, không gửi dữ liệu lên server.</p><pre><code>&lt;!doctype html&gt;
+&lt;html lang="vi"&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Kiểm tra form&lt;/title&gt;
+&lt;form id="student-form" novalidate&gt;
+  &lt;label for="name"&gt;Họ tên&lt;/label&gt;
+  &lt;input id="name" name="name" required aria-describedby="name-error"&gt;
+  &lt;span id="name-error" role="alert"&gt;&lt;/span&gt;
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required aria-describedby="email-error"&gt;
+  &lt;span id="email-error" role="alert"&gt;&lt;/span&gt;
+  &lt;label for="password"&gt;Mật khẩu&lt;/label&gt;
+  &lt;input id="password" name="password" type="password" required minlength="6" aria-describedby="password-error"&gt;
+  &lt;span id="password-error" role="alert"&gt;&lt;/span&gt;
+  &lt;button type="submit"&gt;Kiểm tra&lt;/button&gt;
+  &lt;p id="status" role="status"&gt;&lt;/p&gt;
+&lt;/form&gt;
+&lt;script&gt;
+const form = document.querySelector('#student-form');
+const nameInput = document.querySelector('#name');
+const email = document.querySelector('#email');
+const password = document.querySelector('#password');
+const status = document.querySelector('#status');
+form.addEventListener('submit', (event) =&gt; {
+    event.preventDefault();
+    const nameError = nameInput.value.trim() ? '' : 'Hãy nhập họ tên.';
+    const emailError = email.validity.valid ? '' : 'Hãy nhập email hợp lệ.';
+    const passwordError = password.value.length &gt;= 6 ? '' : 'Mật khẩu cần ít nhất 6 ký tự.';
+    document.querySelector('#name-error').textContent = nameError;
+    document.querySelector('#email-error').textContent = emailError;
+    document.querySelector('#password-error').textContent = passwordError;
+    status.textContent = nameError || emailError || passwordError
+        ? 'Vui lòng sửa các trường có lỗi.' : 'Dữ liệu hợp lệ.';
+});
+&lt;/script&gt;
+&lt;/html&gt;</code></pre><p><code>novalidate</code> tắt thông báo kiểm tra tự động của trình duyệt khi gửi để ví dụ tự hiển thị lỗi; thuộc tính <code>validity</code> vẫn được dùng để kiểm tra email. Khi làm bài, có thể thêm CSS cho thông báo lỗi màu đỏ.</p></section>
+<section><h2>5. Tạo và xóa dòng bảng an toàn</h2><p><code>createElement</code> tạo phần tử, <code>append</code> thêm phần tử vào cây DOM và <code>remove</code> xóa phần tử. Dùng <code>textContent</code> cho tên do người dùng nhập để nó được hiển thị như văn bản, không được hiểu là thẻ HTML.</p><pre><code>// Giả sử tbody là phần tử &lt;tbody&gt; đã được chọn.
+function addRow(tbody, student) {
+    const row = document.createElement('tr');
+    const nameCell = document.createElement('td');
+    nameCell.textContent = student.name;
+    const actionCell = document.createElement('td');
+    const removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.textContent = 'Xóa';
+    removeButton.addEventListener('click', () =&gt; row.remove());
+    actionCell.append(removeButton);
+    row.append(nameCell, actionCell);
+    tbody.append(row);
+}</code></pre><p>Đoạn này chỉ thay đổi DOM. Nếu bạn có mảng sinh viên và localStorage, thao tác xóa còn phải cập nhật mảng và lưu lại; nếu không, dữ liệu cũ có thể xuất hiện lại sau khi tải trang.</p></section>
+<section><h2>6. localStorage và JSON</h2><p>localStorage lưu chuỗi theo cặp khóa–giá trị trong trình duyệt. <code>JSON.stringify</code> chuyển dữ liệu thành chuỗi, <code>JSON.parse</code> đọc lại. Dữ liệu thuộc trình duyệt và phạm vi nguồn gốc của trang, không tự đồng bộ giữa thiết bị; đừng lưu mật khẩu hoặc dữ liệu nhạy cảm.</p><pre><code>const key = 'day10-students';
+const students = [{ id: 1, name: 'An' }];
+try {
+    localStorage.setItem(key, JSON.stringify(students));
+    const stored = JSON.parse(localStorage.getItem(key) || '[]');
+    console.log(stored); // [{ id: 1, name: 'An' }]
+} catch (error) {
+    console.error('Không thể đọc hoặc lưu dữ liệu:', error);
+}</code></pre><p>localStorage có thể bị chặn hoặc đầy và JSON cũ có thể hỏng. Khi đọc dữ liệu trong bài thật, cần kiểm tra cả cấu trúc, ví dụ dùng <code>Array.isArray</code>, rồi thông báo lỗi hoặc khôi phục an toàn; không giả định dữ liệu luôn hợp lệ.</p></section>
+<section><h2>7. Mini project cuối chặng</h2><p><strong>Mục tiêu:</strong> mở rộng form Ngày 03 thành trang quản lý sinh viên. Không lưu trường mật khẩu vào bảng hay localStorage.</p><ol><li>Chặn gửi mặc định và kiểm tra họ tên không rỗng, email đúng định dạng, mật khẩu ít nhất 6 ký tự; hiển thị lỗi đỏ ngay dưới từng ô.</li><li>Khi hợp lệ, thêm một object chỉ chứa dữ liệu cần thiết vào mảng, hiển thị vào bảng và xóa nội dung form phù hợp.</li><li>Thêm nút xóa cho từng sinh viên; cập nhật mảng, bảng và dữ liệu lưu.</li><li>Bắt sự kiện <code>input</code> trên ô tìm kiếm; lọc tên không phân biệt chữ hoa/thường và hiển thị trạng thái không có kết quả.</li><li>Lưu danh sách vào localStorage; tải lại và xử lý dữ liệu sai định dạng, quyền lưu bị chặn hoặc dữ liệu rỗng.</li></ol><p><strong>Gợi ý thứ tự:</strong> xử lý form → mảng dữ liệu → hàm render bảng → xóa → tìm kiếm → lưu và khôi phục. Tự làm từng bước và thử trước khi chuyển bước tiếp theo.</p></section>
+<section><h2>8. Lỗi thường gặp và tự kiểm tra</h2><ul><li>Chọn nhầm ID: kiểm tra giá trị trả về từ <code>querySelector</code> trước khi sử dụng.</li><li>Nhập tên chứa thẻ HTML: hiển thị bằng <code>textContent</code>, tránh nối vào <code>innerHTML</code>.</li><li>Đã xóa dòng nhưng tải lại xuất hiện: cập nhật dữ liệu và localStorage, không chỉ xóa DOM.</li><li>Form trông hợp lệ nhưng vẫn phải kiểm tra ở server khi có backend.</li><li>Kiểm tra bàn phím: Tab qua các trường, nhấn Enter gửi, thử thông báo lỗi và trường rỗng.</li></ul><p>Nguồn tham khảo: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">DOM</a>, <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation">Form validation</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>.</p></section>
+<section id="trac-nghiem"><h2>9. Trắc nghiệm cuối Ngày 10</h2><p>Chọn một đáp án cho mỗi câu. Hoàn thành cả 15 câu trước khi nộp để xem điểm và giải thích.</p><noscript><p>Hãy bật JavaScript để chấm bài.</p></noscript><form id="day10-quiz" novalidate><fieldset class="quiz-question" data-answer="0" data-explanation="DOM biểu diễn tài liệu để chương trình đọc và thay đổi."><legend>Câu 1. DOM là gì?</legend><div class="quiz-options"><label><input type="radio" name="q1" value="0"> A. Biểu diễn tài liệu dưới dạng cây đối tượng</label><label><input type="radio" name="q1" value="1"> B. Một cơ sở dữ liệu</label><label><input type="radio" name="q1" value="2"> C. Máy chủ PHP</label><label><input type="radio" name="q1" value="3"> D. Tên một trình duyệt</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="querySelector trả null khi không tìm thấy phần tử."><legend>Câu 2. querySelector trả gì nếu không khớp?</legend><div class="quiz-options"><label><input type="radio" name="q2" value="0"> A. false</label><label><input type="radio" name="q2" value="1"> B. null</label><label><input type="radio" name="q2" value="2"> C. 0</label><label><input type="radio" name="q2" value="3"> D. []</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="textContent hiển thị dữ liệu dưới dạng văn bản."><legend>Câu 3. Cách an toàn để hiển thị chữ người dùng nhập là gì?</legend><div class="quiz-options"><label><input type="radio" name="q3" value="0"> A. Nối vào innerHTML</label><label><input type="radio" name="q3" value="1"> B. Đặt textContent</label><label><input type="radio" name="q3" value="2"> C. Chạy eval</label><label><input type="radio" name="q3" value="3"> D. Đưa vào script</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="submit xảy ra khi form được gửi."><legend>Câu 4. Sự kiện nào bắt việc gửi form?</legend><div class="quiz-options"><label><input type="radio" name="q4" value="0"> A. change</label><label><input type="radio" name="q4" value="1"> B. submit</label><label><input type="radio" name="q4" value="2"> C. mouseover</label><label><input type="radio" name="q4" value="3"> D. scroll</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="preventDefault ngăn hành vi mặc định của sự kiện có thể hủy."><legend>Câu 5. preventDefault trong sự kiện submit dùng để làm gì?</legend><div class="quiz-options"><label><input type="radio" name="q5" value="0"> A. Xóa form</label><label><input type="radio" name="q5" value="1"> B. Ngăn hành vi gửi mặc định</label><label><input type="radio" name="q5" value="2"> C. Lưu vào server</label><label><input type="radio" name="q5" value="3"> D. Tắt JavaScript</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="0" data-explanation="input phát khi giá trị được thay đổi bởi người dùng."><legend>Câu 6. Để theo dõi thay đổi ô tìm kiếm khi nhập, thường dùng sự kiện nào?</legend><div class="quiz-options"><label><input type="radio" name="q6" value="0"> A. input</label><label><input type="radio" name="q6" value="1"> B. load</label><label><input type="radio" name="q6" value="2"> C. submit</label><label><input type="radio" name="q6" value="3"> D. unload</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="0" data-explanation="Truyền tham chiếu handler; handler() gọi hàm ngay."><legend>Câu 7. Dòng nào đăng ký hàm xử lý mà không gọi ngay?</legend><div class="quiz-options"><label><input type="radio" name="q7" value="0"> A. button.addEventListener(&#x27;click&#x27;, handler)</label><label><input type="radio" name="q7" value="1"> B. button.addEventListener(&#x27;click&#x27;, handler())</label><label><input type="radio" name="q7" value="2"> C. handler()</label><label><input type="radio" name="q7" value="3"> D. button.click = handler()</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="type button tránh gửi form mặc định."><legend>Câu 8. Trong form, nút xóa dòng nên có type gì?</legend><div class="quiz-options"><label><input type="radio" name="q8" value="0"> A. submit</label><label><input type="radio" name="q8" value="1"> B. button</label><label><input type="radio" name="q8" value="2"> C. text</label><label><input type="radio" name="q8" value="3"> D. email</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="Validity kiểm tra các ràng buộc, không chứng minh địa chỉ tồn tại."><legend>Câu 9. email.validity.valid cho biết gì?</legend><div class="quiz-options"><label><input type="radio" name="q9" value="0"> A. Email chắc chắn tồn tại</label><label><input type="radio" name="q9" value="1"> B. Giá trị thỏa các ràng buộc HTML hiện có</label><label><input type="radio" name="q9" value="2"> C. Server đã xác thực</label><label><input type="radio" name="q9" value="3"> D. Email thuộc người dùng</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="Server vẫn phải kiểm tra dữ liệu vì client có thể bị thay đổi hoặc bỏ qua."><legend>Câu 10. Kiểm tra ở trình duyệt có thay thế validation server?</legend><div class="quiz-options"><label><input type="radio" name="q10" value="0"> A. Có</label><label><input type="radio" name="q10" value="1"> B. Không</label><label><input type="radio" name="q10" value="2"> C. Chỉ khi dùng required</label><label><input type="radio" name="q10" value="3"> D. Chỉ khi dùng email</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="0" data-explanation="createElement tạo một phần tử DOM mới."><legend>Câu 11. createElement dùng để làm gì?</legend><div class="quiz-options"><label><input type="radio" name="q11" value="0"> A. Tạo phần tử DOM</label><label><input type="radio" name="q11" value="1"> B. Tạo database</label><label><input type="radio" name="q11" value="2"> C. Gửi biểu mẫu</label><label><input type="radio" name="q11" value="3"> D. Lưu JSON</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="0" data-explanation="Giá trị localStorage được lưu dưới dạng chuỗi."><legend>Câu 12. localStorage lưu giá trị dưới dạng nào?</legend><div class="quiz-options"><label><input type="radio" name="q12" value="0"> A. Chuỗi</label><label><input type="radio" name="q12" value="1"> B. Mảng JavaScript trực tiếp</label><label><input type="radio" name="q12" value="2"> C. Hàm</label><label><input type="radio" name="q12" value="3"> D. Phần tử DOM</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="JSON.stringify chuyển giá trị tương thích JSON thành chuỗi JSON."><legend>Câu 13. JSON.stringify làm gì?</legend><div class="quiz-options"><label><input type="radio" name="q13" value="0"> A. Phân tích chuỗi JSON thành dữ liệu</label><label><input type="radio" name="q13" value="1"> B. Chuyển dữ liệu thành chuỗi JSON</label><label><input type="radio" name="q13" value="2"> C. Xóa localStorage</label><label><input type="radio" name="q13" value="3"> D. Tạo phần tử bảng</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="Cập nhật cả nguồn dữ liệu và bản lưu để trạng thái nhất quán sau khi tải lại."><legend>Câu 14. Khi xóa một sinh viên có lưu localStorage cần làm gì?</legend><div class="quiz-options"><label><input type="radio" name="q14" value="0"> A. Chỉ xóa dòng HTML</label><label><input type="radio" name="q14" value="1"> B. Cập nhật mảng, giao diện và dữ liệu lưu</label><label><input type="radio" name="q14" value="2"> C. Chỉ đóng trình duyệt</label><label><input type="radio" name="q14" value="3"> D. Chỉ xóa nội dung ô tên</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><fieldset class="quiz-question" data-answer="1" data-explanation="Không lưu mật khẩu vào localStorage hoặc bảng dữ liệu của bài tập."><legend>Câu 15. Có nên lưu mật khẩu vào localStorage trong bài này?</legend><div class="quiz-options"><label><input type="radio" name="q15" value="0"> A. Có, để dễ đăng nhập</label><label><input type="radio" name="q15" value="1"> B. Không</label><label><input type="radio" name="q15" value="2"> C. Chỉ khi mã hóa Base64</label><label><input type="radio" name="q15" value="3"> D. Chỉ khi tên ngắn</label></div><p class="quiz-feedback" aria-live="polite"></p></fieldset><div class="quiz-actions"><button type="submit">Nộp bài và xem kết quả</button><button type="reset">Làm lại</button></div><p id="quiz-result" role="status" aria-live="polite"></p></form></section></main><footer><nav><a href="index.html">Mục lục</a><a href="ngay-09.html">← Ngày 09</a><a href="ngay-11.html">Ngày 11 →</a></nav></footer><style>.quiz-question{margin:1rem 0;padding:1rem;border:1px solid #cbd9e7;border-radius:8px}.quiz-question legend{font-weight:700;padding:0 .3rem}.quiz-options{display:grid;gap:.35rem}.quiz-options label{display:flex;align-items:baseline;gap:.5rem;cursor:pointer}.quiz-feedback{margin:.6rem 0 0}.quiz-feedback:empty{display:none}.quiz-actions{display:flex;flex-wrap:wrap;gap:.7rem}.quiz-actions button{font:inherit;padding:.6rem 1rem;border:1px solid #165eaa;border-radius:6px;cursor:pointer}.quiz-actions button[type=submit]{background:#165eaa;color:white}.quiz-actions button[type=reset]{background:white;color:#165eaa}#quiz-result{font-weight:700} @media print{.quiz-actions{display:none}}</style><script>
+(function () {
+  const form = document.getElementById("day10-quiz");
+  const result = document.getElementById("quiz-result");
+  const questions = Array.from(form.querySelectorAll(".quiz-question"));
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const missing = questions.find(function (question) { return !question.querySelector("input:checked"); });
+    if (missing) {
+      result.textContent = "Bạn hãy trả lời đủ 15 câu trước khi nộp bài.";
+      missing.querySelector("input").focus();
+      return;
+    }
+    let score = 0;
+    questions.forEach(function (question) {
+      const selected = question.querySelector("input:checked");
+      const correct = selected.value === question.dataset.answer;
+      if (correct) score += 1;
+      const answer = question.querySelector('input[value="' + question.dataset.answer + '"]');
+      const answerText = answer.parentElement.textContent.trim();
+      question.querySelector(".quiz-feedback").textContent = (correct ? "Đúng. " : "Chưa đúng. Đáp án: " + answerText + ". ") + question.dataset.explanation;
+    });
+    result.textContent = "Kết quả: " + score + " / " + questions.length + " câu đúng.";
+  });
+  function clearResult() {
+    result.textContent = "";
+    questions.forEach(function (question) { question.querySelector(".quiz-feedback").textContent = ""; });
+  }
+  form.addEventListener("change", clearResult);
+  form.addEventListener("reset", clearResult);
+})();</script></body></html>

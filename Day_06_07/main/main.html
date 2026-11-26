@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Day 06 - Product Grid</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="scripts.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navbar dùng Flexbox -->
+    <header class="navbar">
+        <a href="#" class="logo">MyShop</a>
+
+        <nav class="nav-menu">
+            <a href="#">Trang chủ</a>
+            <a href="#products">Sản phẩm</a>
+            <a href="#contact">Liên hệ</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="#" class="login-btn">Đăng nhập</a>
+        </div>
+    </header>
+
+    <main class="container" id="products">
+        <h1>Danh sách sản phẩm</h1>
+        <p>Khám phá các sản phẩm công nghệ.</p>
+
+        <!-- Danh sách dùng CSS Grid -->
+        <section class="product-grid">
+
+            <article class="product-card">
+                <img src="./images/product-1.jpg"
+                     alt="Bàn phím cơ">
+                <div class="card-content">
+                    <h2>Bàn phím cơ</h2>
+                    <p class="price">750.000 VNĐ</p>
+                    <button type="button" class="detail-btn">
+                        Xem chi tiết
+                    </button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="./images/product-2.jpg"
+                     alt="Chuột gaming">
+                <div class="card-content">
+                    <h2>Chuột Gaming</h2>
+                    <p class="price">350.000 VNĐ</p>
+                    <button type="button" class="detail-btn">
+                        Xem chi tiết
+                    </button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="./images/product-3.jpg"
+                     alt="Tai nghe">
+                <div class="card-content">
+                    <h2>Tai nghe</h2>
+                    <p class="price">500.000 VNĐ</p>
+                    <button type="button" class="detail-btn">
+                        Xem chi tiết
+                    </button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="./images/product-4.jpg"
+                     alt="Màn hình máy tính">
+                <div class="card-content">
+                    <h2>Màn hình</h2>
+                    <p class="price">3.500.000 VNĐ</p>
+                    <button type="button" class="detail-btn">
+                        Xem chi tiết
+                    </button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="./images/product-5.jpg"
+                     alt="Laptop">
+                <div class="card-content">
+                    <h2>Laptop</h2>
+                    <p class="price">15.000.000 VNĐ</p>
+                    <button type="button" class="detail-btn">
+                        Xem chi tiết
+                    </button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="./images/product-6.jpg"
+                     alt="Webcam">
+                <div class="card-content">
+                    <h2>Webcam</h2>
+                    <p class="price">600.000 VNĐ</p>
+                    <button type="button" class="detail-btn">
+                        Xem chi tiết
+                    </button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="./images/product-7.jpg"
+                     alt="Loa Bluetooth">
+                <div class="card-content">
+                    <h2>Loa Bluetooth</h2>
+                    <p class="price">850.000 VNĐ</p>
+                    <button type="button" class="detail-btn">
+                        Xem chi tiết
+                    </button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="./images/product-8.jpg"
+                     alt="Ổ cứng SSD">
+                <div class="card-content">
+                    <h2>Ổ cứng SSD</h2>
+                    <p class="price">1.200.000 VNĐ</p>
+                    <button type="button" class="detail-btn">
+                        Xem chi tiết
+                    </button>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>© 2026 - MyShop</p>
+    </footer>
+
+</body>
+</html>
