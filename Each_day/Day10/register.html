@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Day 10 - Quản lý sinh viên</title>
+        <link href="style.css" rel="stylesheet">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Đăng ký thông tin sinh viên</h1>
+        </header>
+        <main>
+            <section>
+            <form id="registration-form" novalidate>
+                <label for="full-name">Họ và tên</label>
+                <input type="text" 
+                id="full-name"
+                name="full-name"
+                placeholder="Nhập họ và tên"
+                required aria-describedby="name-error">
+                <p class="field-error" id="name-error" aria-live="polite"></p>
+                
+                <label for="password">Mật khẩu</label>
+                <input type="password"
+                id="password"
+                name="password"
+                placeholder="Nhập mật khẩu"
+                minlength="6" required aria-describedby="password-error">
+                <p class="field-error" id="password-error" aria-live="polite"></p>
+                <br>
+
+                <label for="email">Email</label>
+                <input type="email"
+                id="email"
+                name="email"
+                placeholder="Nhập mail"
+                required aria-describedby="email-error">
+                <p class="field-error" id="email-error" aria-live="polite"></p>
+
+                <label for="birthday">Ngày sinh</label>
+                <input type="date"
+                id="birthday"
+                name="birthday"
+                required>
+
+                <fieldset>
+                    <legend>Giới tính</legend>
+                    <label>
+                        <input type="radio"
+                        name="gender"
+                        value="male">
+                        Nam
+                    </label>
+                    <label>
+                        <input type="radio"
+                        name="gender"
+                        value="female">
+                        Nữ
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Sở thích</legend>
+                    <label>
+                        <input type="checkbox"
+                        name="hobbies"
+                        value="Bóng đá">
+                        Bóng đá
+                    </label>
+                    <label>
+                        <input type="checkbox"
+                        name="hobbies"
+                        value="Chơi game">
+                        Chơi game
+                    </label>
+                    <label>
+                        <input type="checkbox"
+                        name="hobbies"
+                        value="Nghe nhạc">
+                        Nghe nhạc
+                    </label>
+                    <label>
+                        <input type="checkbox"
+                        name="hobbies"
+                        value="Xem phim">
+                        Xem phim
+                    </label>
+                </fieldset>
+
+
+                <label for="Khoa">Khoa</label>
+                    <select id="Khoa" name="Khoa" required>
+                        <option value="">-- Chọn khoa --</option>
+                        <option value="it">Công nghệ thông tin</option>
+                        <option value="ai">Trí tuệ nhân tạo</option>
+                        <option value="co-dien-tu">Cơ điện tử</option>
+                        <option value="vien-thong">Điện tử viễn thông</option>
+                    </select>
+
+                <label for="notes">Ghi chú<br></label>
+                <textarea id="notes" name="notes" rows="4" cols="50" placeholder="Nhập ghi chú..." required></textarea>
+                
+                <br>
+                <button type="submit" disabled>Đăng ký</button>
+                <p id="registration-status" role="status"></p>
+                <noscript>Vui lòng bật JavaScript để thêm thông tin vào bảng.</noscript>
+            </form>
+            </section>
+
+            <hr>
+        
+            <section>
+                <p id="storage-warning" class="storage-warning" role="alert"></p>
+                <label for="student-search">Tìm theo họ tên</label>
+                <input id="student-search" type="search" placeholder="Nhập tên sinh viên">
+                <p id="search-status" role="status"></p>
+                <table id="registered-students">
+                    <caption><h2>Danh sách sinh viên</h2></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Họ và tên</th>
+                            <th scope="col">Ngày sinh</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Giới tính</th>
+                            <th scope="col">Sở thích</th>
+                            <th scope="col">Khoa</th>
+                            <th scope="col">Ghi chú</th>
+                            <th scope="col">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </main>
+
+        <footer>
+        <p>@2026 - Student management</p>
+        </footer>
+    </body>
+</html>
